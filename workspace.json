@@ -1,10 +1,129 @@
 {
-  
-  
   "version": 2,
-  
-  "projects": {},
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "ignoratio",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true,
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true
+      }
+    }
+  },
+  "projects": {
+    "ignoratio": {
+      "root": "apps/ignoratio",
+      "sourceRoot": "apps/ignoratio/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/ignoratio",
+            "index": "apps/ignoratio/src/index.html",
+            "main": "apps/ignoratio/src/main.tsx",
+            "polyfills": "apps/ignoratio/src/polyfills.ts",
+            "tsConfig": "apps/ignoratio/tsconfig.app.json",
+            "assets": [
+              "apps/ignoratio/src/favicon.ico",
+              "apps/ignoratio/src/assets"
+            ],
+            "styles": ["apps/ignoratio/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ignoratio/src/environments/environment.ts",
+                  "with": "apps/ignoratio/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "ignoratio:build",
+            "hmr": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "ignoratio:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ignoratio/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ignoratio"],
+          "options": {
+            "jestConfig": "apps/ignoratio/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ignoratio-e2e": {
+      "root": "apps/ignoratio-e2e",
+      "sourceRoot": "apps/ignoratio-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ignoratio-e2e/cypress.json",
+            "tsConfig": "apps/ignoratio-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ignoratio:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ignoratio:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ignoratio-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
   }
 }

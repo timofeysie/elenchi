@@ -1,12 +1,39 @@
-
-
 # Elenchi
 
-This project was generated using [Nx](https://nx.dev).
+An [Nx](https://nx.dev) monorepo for React and Angular.
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-🔎 **Smart, Extensible Build Framework**
+## Workflow
+
+```txt
+nx serve ignoratio
+nx g @nrwl/react:app ignoratio to generate an application.
+nx g @nrwl/react:lib my-lib to generate a library.
+nx g @nrwl/react:component my-component --project=ignoratio
+nx build ignoratio to build the project, `--prod` flag for a production build.
+nx test ignoratio to execute the unit tests via Jest.
+nx affected:test to execute the unit tests affected by a change.
+ng e2e ignoratio to execute the end-to-end tests via Cypress.
+nx affected:e2e to execute the end-to-end tests affected by a change.
+nx dep-graph to see a diagram of the dependencies of your projects.
+```
+
+## Original readme
+
+The first React was created with the following:
+
+```txt
+npx create-nx-workspace@latest
+? Workspace name (e.g., org name)     elenchi
+? What to create in the new workspace react
+? Application name                    todos
+? Default stylesheet format           CSS
+cd elenchi
+nx generate @nrwl/react:app ignoratio
+? Which stylesheet format would you like to use? ...
+> CSS
+```
 
 ## Adding capabilities to your workspace
 
