@@ -25,6 +25,9 @@
     "ignoratio-e2e": {
       "tags": [],
       "implicitDependencies": ["ignoratio"]
+    },
+    "game": {
+      "tags": []
     }
   }
 }
